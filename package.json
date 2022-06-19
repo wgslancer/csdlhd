@@ -1,0 +1,14 @@
+{
+  "name": "csdlhd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.4.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

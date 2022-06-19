@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lich Su Tiem Chung</title>
+    <link rel="stylesheet" href="/assets/css/lichsutiemchung/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Lịch sử tiêm chủng</h1>
+      <table class="lichsu" id="lichsu">
+        <tr>
+          <th>Tên</th>
+          <th>SĐT</th>
+          <th>Địa chỉ</th>
+          <th>Ngày sinh</th>
+          <th>Loại dịch vụ</th>
+          <th>Ngày tiêm</th>
+          <th>Trung tâm</th>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script>
+    const addressToString = (address) => {
+      const keys = Object.keys(address);
+
+      return keys.reduce((prev, next) => {
+        return prev + " " + address[next];
+      }, "");
+    };
+    const getService = (services) => {
+      const keys = Object.keys(services);
+
+      return keys.reduce((prev, next) => {
+        const value = services[next];
+        return prev + value;
+      }, "");
+    };
+    const lichSuTable = document.getElementById("lichsu");
+
+    const getData = async () => {
+      const response = await fetch(
+        "http://localhost:3000/lich-su-tiem-chung/list"
+      ).then((res) => res.json());
+      response.forEach(({ HoTen, SDT, DiaChi, NgaySinh, DichVu }) => {
+        const tr = document.createElement("tr");
+        const hoTen = document.createElement("td");
+        hoTen.textContent = HoTen;
+
+        const sdt = document.createElement("td");
+        sdt.textContent = SDT;
+
+        const diaChi = document.createElement("td");
+        diaChi.textContent = addressToString(DiaChi);
+        console.log(NgaySinh);
+        const ngaySinh = document.createElement("td");
+        ngaySinh.textContent = NgaySinh;
+
+        const loaiDV = document.createElement("td");
+        loaiDV.textContent = getService(DichVu.LoaiDV);
+
+        const ngayTiem = document.createElement("td");
+        ngayTiem.textContent = DichVu.NgayTiem;
+
+        const trungTam = document.createElement("td");
+        trungTam.textContent = DichVu.TrungTam;
+
+        tr.append(hoTen, sdt, diaChi, ngaySinh, loaiDV, ngayTiem, trungTam);
+        lichSuTable.appendChild(tr);
+      });
+      console.log(response);
+    };
+    getData();
+  </script>
+</html>

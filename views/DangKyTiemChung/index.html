@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/dangkytiemchung/style.css" />
+  </head>
+  <body>
+    <h1>Đăng ký tiêm chủng</h1>
+    <form action="/dang-ky-tiem-chung" method="post">
+      <div class="ThongTinNguoiTiem">
+        <h2>Thông Tin Người Tiêm</h2>
+        <input type="text" placeholder="Họ và tên" name="HoTen" />
+        <label for="NgaySinh">Ngày sinh</label>
+        <input
+          id="NgaySinh"
+          type="date"
+          placeholder="Ngày sinh"
+          name="NgaySinh"
+        />
+        <label for="GioiTinh">Giới Tính</label>
+        <select name="GioiTinh" id="GioiTinh">
+          <option value="Nam">Nam</option>
+          <option value="Nữ">Nữ</option>
+        </select>
+
+        <input type="text" placeholder="SĐT" name="SDT" />
+        <div>
+          <input type="text" placeholder="Tỉnh/Thành" name="TinhThanh" />
+          <input type="text" placeholder="Quận huyện" name="QuanHuyen" />
+          <input type="text" placeholder="Phường xã" name="PhuongXa" />
+          <input type="text" placeholder="Số nhà/ tên đường" name="SoNha" />
+        </div>
+      </div>
+
+      <div class="LoaiDichVu">
+        <h2>Loại Dịch Vụ</h2>
+        <select name="LoaiDV" id="LoaiDV">
+          <option value="GoiVacXin">Gói vaccine</option>
+          <option value="VacXinLe">Vaccine lẻ</option>
+        </select>
+        <input type="text" placeholder="Trung tâm" name="TrungTam" />
+        <label for="NgayTiem">Ngày Tiêm</label>
+        <input
+          id="NgayTiem"
+          type="date"
+          placeholder="Ngày tiêm"
+          name="NgayTiem"
+        />
+      </div>
+      <div class="Vaccine"></div>
+      <div>
+        <h2>Liên hệ</h2>
+        <input type="text" placeholder="Họ tên" name="HoTenLienHe" />
+        <input type="text" placeholder="Mối Quan Hệ" name="MoiQuanHe" />
+        <input type="text" placeholder="SĐT" name="SDTLienHe" />
+      </div>
+      <button type="submit">Đăng ký</button>
+    </form>
+  </body>
+  <script>
+    const selectLoaiDV = document.getElementById("LoaiDV");
+    const divVaccine = document.querySelector(".Vaccine");
+
+    selectLoaiDV.onchange = (e) => {
+      const value = e.target.value;
+      const vaccineInput = document.createElement("input");
+      vaccineInput.name = "TenVaccine";
+      vaccineInput.placeholder = "Tên Vaccine";
+      if (!divVaccine.childElementCount) {
+        divVaccine.appendChild(vaccineInput);
+      }
+    };
+  </script>
+</html>
